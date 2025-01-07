@@ -5,9 +5,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-green': '#39ff14',
-        'neon-blue': '#00fff5',
-        'neon-purple': '#ff00ff',
+        'neon-red': '#ff0000',
+        'cyber-black': '#0a0a0a',
+        'matrix-black': '#000900',
+        'terminal-green': '#00ff00',
+      },
+      fontFamily: {
+        'mono': ['Courier New', 'monospace'],
       },
     },
   },

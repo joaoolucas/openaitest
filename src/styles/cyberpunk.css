@@ -1,26 +1,33 @@
 :root {
-  --neon-green: #39ff14;
-  --neon-blue: #00fff5;
-  --neon-purple: #ff00ff;
+  --neon-red: #ff0000;
+  --neon-dark-red: #8b0000;
+  --terminal-green: #00ff00;
+  --cyber-black: #0a0a0a;
+  --matrix-black: #000900;
+  --glitch-blue: #00fff5;
 }
 
 .cyberpunk-border {
   position: relative;
-  border: 2px solid var(--neon-blue);
-  box-shadow: 0 0 10px var(--neon-blue);
+  border: 2px solid var(--neon-red);
+  box-shadow: 0 0 10px var(--neon-red);
+  animation: borderPulse 4s infinite;
 }
 
 .cyberpunk-scrollbar::-webkit-scrollbar {
   width: 8px;
+  background: var(--cyber-black);
 }
 
 .cyberpunk-scrollbar::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--matrix-black);
+  border: 1px solid var(--neon-red);
 }
 
 .cyberpunk-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--neon-purple);
-  border-radius: 4px;
+  background: var(--neon-red);
+  border-radius: 0;
+  box-shadow: 0 0 5px var(--neon-red);
 }
 
 .loading-dots {
@@ -31,17 +38,30 @@
 .loading-dots span {
   width: 8px;
   height: 8px;
-  background-color: var(--neon-blue);
-  border-radius: 50%;
+  background-color: var(--neon-red);
   animation: pulse 1s infinite;
 }
 
-.loading-dots span:nth-child(2) {
-  animation-delay: 0.2s;
+.terminal-header {
+  font-family: monospace;
+  color: var(--neon-red);
+  padding: 10px;
+  border-bottom: 1px solid var(--neon-red);
+  text-shadow: 0 0 5px var(--neon-red);
 }
 
-.loading-dots span:nth-child(3) {
-  animation-delay: 0.4s;
+.terminal-text {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--neon-red);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--neon-red);
+  }
 }
 
 @keyframes pulse {
@@ -52,5 +72,20 @@
   50% {
     transform: scale(0.5);
     opacity: 0.5;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 var(--neon-red), -2px 0 var(--glitch-blue);
+  }
+  25% {
+    text-shadow: -2px 0 var(--neon-red), 2px 0 var(--glitch-blue);
+  }
+  50% {
+    text-shadow: 2px 0 var(--neon-red), -2px 0 var(--glitch-blue);
+  }
+  100% {
+    text-shadow: -2px 0 var(--neon-red), 2px 0 var(--glitch-blue);
   }
 } 
