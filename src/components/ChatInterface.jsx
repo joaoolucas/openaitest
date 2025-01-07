@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import OpenAI from 'openai';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
@@ -31,6 +32,10 @@ const ChatInterface = () => {
     try {
       const response = await axios.post('/api/chat', {
         message: input
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
 
       const aiMessage = {
@@ -41,6 +46,7 @@ const ChatInterface = () => {
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error:', error);
+      // Add error handling UI if needed
     } finally {
       setIsLoading(false);
     }
