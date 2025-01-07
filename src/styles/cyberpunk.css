@@ -4,23 +4,120 @@
   --terminal-green: #00ff00;
   --cyber-black: #0a0a0a;
   --matrix-black: #000900;
-  --glitch-blue: #00fff5;
 }
 
-.cyberpunk-border {
+/* Matrix Rain Effect */
+.matrix-rain {
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    rgba(255, 0, 0, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 100% 20px;
+  animation: matrix-rain 20s linear infinite;
+}
+
+/* Terminal Line Styles */
+.terminal-line {
+  font-family: 'Courier New', monospace;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fade-in 0.3s ease forwards;
+}
+
+.user-message {
+  color: var(--terminal-green);
+}
+
+.system-message {
+  color: var(--neon-red);
+}
+
+/* Loading Cursor */
+.loading-cursor::after {
+  content: '_';
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Glitch Effect */
+.glitch-text {
   position: relative;
-  border: 2px solid var(--neon-red);
-  box-shadow: 0 0 10px var(--neon-red);
-  animation: borderPulse 4s infinite;
+  text-shadow: 
+    0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch 500ms infinite;
 }
 
+/* Animations */
+@keyframes matrix-rain {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: 
+      -0.025em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+/* Scrollbar Styling */
 .cyberpunk-scrollbar::-webkit-scrollbar {
   width: 8px;
   background: var(--cyber-black);
 }
 
 .cyberpunk-scrollbar::-webkit-scrollbar-track {
-  background: var(--matrix-black);
+  background: rgba(255, 0, 0, 0.1);
   border: 1px solid var(--neon-red);
 }
 
@@ -30,62 +127,19 @@
   box-shadow: 0 0 5px var(--neon-red);
 }
 
-.loading-dots {
-  display: flex;
-  gap: 4px;
+/* Terminal Status Styles */
+.terminal-status {
+  padding: 2px 8px;
+  border: 1px solid var(--neon-red);
+  animation: status-pulse 2s infinite;
 }
 
-.loading-dots span {
-  width: 8px;
-  height: 8px;
-  background-color: var(--neon-red);
-  animation: pulse 1s infinite;
-}
-
-.terminal-header {
-  font-family: monospace;
+.terminal-time {
+  font-family: 'Courier New', monospace;
   color: var(--neon-red);
-  padding: 10px;
-  border-bottom: 1px solid var(--neon-red);
-  text-shadow: 0 0 5px var(--neon-red);
 }
 
-.terminal-text {
-  font-family: monospace;
-  letter-spacing: 1px;
-}
-
-@keyframes borderPulse {
-  0%, 100% {
-    box-shadow: 0 0 10px var(--neon-red);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--neon-red);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-}
-
-@keyframes glitch {
-  0% {
-    text-shadow: 2px 0 var(--neon-red), -2px 0 var(--glitch-blue);
-  }
-  25% {
-    text-shadow: -2px 0 var(--neon-red), 2px 0 var(--glitch-blue);
-  }
-  50% {
-    text-shadow: 2px 0 var(--neon-red), -2px 0 var(--glitch-blue);
-  }
-  100% {
-    text-shadow: -2px 0 var(--neon-red), 2px 0 var(--glitch-blue);
-  }
+@keyframes status-pulse {
+  0%, 100% { border-color: var(--neon-red); }
+  50% { border-color: var(--neon-dark-red); }
 } 
