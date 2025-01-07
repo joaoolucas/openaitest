@@ -1,0 +1,56 @@
+:root {
+  --neon-green: #39ff14;
+  --neon-blue: #00fff5;
+  --neon-purple: #ff00ff;
+}
+
+.cyberpunk-border {
+  position: relative;
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.cyberpunk-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cyberpunk-scrollbar::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.cyberpunk-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
+  border-radius: 4px;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-blue);
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+} 
